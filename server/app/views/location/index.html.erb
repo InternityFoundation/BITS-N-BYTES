@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col">
-      1 of 3
+    <div class="col-sm-3">
+      <%= render 'spots', spot: @spots %>
     </div>
-    <div class="col-6">
-      2 of 3 (wider)
+    <div class="col-sm-6">
+      <%= render 'map' %>
     </div>
-    <div class="col">
-      3 of 3
+    <div class="col-sm-3">
+      <%= render 'feedback', feedback: @feedback %>
     </div>
   </div>
