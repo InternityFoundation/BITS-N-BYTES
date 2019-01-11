@@ -4,14 +4,15 @@
     <title>Server</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/">BITS-N-BYTES</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,8 +40,21 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <% if !user_signed_in? %>
+              <%= link_to '<button class="btn btn-secondary">Signup</button>'.html_safe, new_user_registration_path %>
+              <%= link_to '<button class="btn btn-success">Login</button>'.html_safe, new_user_session_path %>
+              <%= link_to '<button class="btn btn-google">Login with Google | <i class="fab fa-google"></i></button>'.html_safe, user_google_oauth2_omniauth_authorize_path %>
+            <% else %>
+              <%= current_user.email %> <%= link_to '<button class="btn btn-danger">Logout</button>'.html_safe, destroy_user_session_path, method: :delete %>
+            <% end %>
+        </ul>
       </div>
     </nav>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
