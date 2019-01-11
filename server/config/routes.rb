@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
   get 'location/index'
   get 'pages/index'
+
+  get 'pages/about' => 'pages/about'
+  get 'pages/contact' => 'pages/contact'
+  
   post '/feedback', to: 'location#create_feedback'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
