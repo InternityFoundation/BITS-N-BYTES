@@ -4496,3 +4496,112 @@ Processing by LocationController#index as HTML
 Completed 200 OK in 125ms (Views: 118.2ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/" for ::1 at 2019-01-12 03:46:32 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/harmanjolly/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 2533ms (Views: 2522.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/location/index" for ::1 at 2019-01-12 03:46:37 +0530
+Processing by LocationController#index as HTML
+  Rendering location/index.html.erb within layouts/application
+  [1m[36mFeedback Load (0.6ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks"[0m
+  ↳ app/views/location/_spots.html.erb:3
+  Rendered location/_spots.html.erb (5.6ms)
+  Rendered location/_map.html.erb (0.8ms)
+  Rendered location/_feedback.html.erb (2.6ms)
+  Rendered location/index.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 108ms (Views: 72.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/location/index" for ::1 at 2019-01-12 03:47:20 +0530
+Processing by LocationController#index as HTML
+  Rendering location/index.html.erb within layouts/application
+  [1m[36mFeedback Load (0.2ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks"[0m
+  ↳ app/views/location/_spots.html.erb:3
+  Rendered location/_spots.html.erb (1.8ms)
+  Rendered location/_map.html.erb (0.4ms)
+  Rendered location/_feedback.html.erb (1.4ms)
+  Rendered location/index.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 79ms (Views: 75.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/location/index" for ::1 at 2019-01-12 03:47:22 +0530
+Processing by LocationController#index as HTML
+  Rendering location/index.html.erb within layouts/application
+  [1m[36mFeedback Load (0.2ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks"[0m
+  ↳ app/views/location/_spots.html.erb:3
+  Rendered location/_spots.html.erb (1.4ms)
+  Rendered location/_map.html.erb (0.4ms)
+  Rendered location/_feedback.html.erb (1.0ms)
+  Rendered location/index.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 72ms (Views: 68.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/location/index" for ::1 at 2019-01-12 03:47:42 +0530
+Processing by LocationController#index as HTML
+  Rendering location/index.html.erb within layouts/application
+  [1m[36mFeedback Load (0.3ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks"[0m
+  ↳ app/views/location/_spots.html.erb:3
+  Rendered location/_spots.html.erb (3.0ms)
+  Rendered location/_map.html.erb (0.3ms)
+  Rendered location/_feedback.html.erb (0.9ms)
+  Rendered location/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 107ms (Views: 104.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2019-01-12 04:11:50 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/harmanjolly/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 406ms (Views: 397.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-01-12 04:19:06 +0530
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/_carousel.html.erb (368.7ms)
+  Rendered pages/index.html.erb within layouts/application (372.6ms)
+Completed 500 Internal Server Error in 388ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `pages_about_path' for #<#<Class:0x00007fb51b4416f0>:0x00007fb51d8834c8>
+Did you mean?  pages_index_path):
+    33:             <div class="carousel-caption">
+    34:               <h1 class = "display-1">We are here to help  </h1>
+    35:               <p style="font-size :30px;">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+    36:               <%= link_to "Learn More", pages_about_path, class: "btn btn-lrg btn-primary" %>
+    37:             </div>
+    38: 
+    39:           </div>
+  
+app/views/pages/_carousel.html.erb:36:in `_app_views_pages__carousel_html_erb__989591942943241440_70207913179620'
+app/views/pages/index.html.erb:4:in `_app_views_pages_index_html_erb__519824179893668353_70207890170440'
+Started GET "/" for ::1 at 2019-01-12 04:20:28 +0530
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/_carousel.html.erb (0.5ms)
+  Rendered pages/_3headings.html.erb (0.3ms)
+  Rendered pages/_features.html.erb (0.5ms)
+  Rendered pages/index.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 1434ms (Views: 1431.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-01-12 04:20:35 +0530
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/_carousel.html.erb (0.9ms)
+  Rendered pages/_3headings.html.erb (0.4ms)
+  Rendered pages/_features.html.erb (0.5ms)
+  Rendered pages/index.html.erb within layouts/application (11.2ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 98ms (Views: 94.8ms | ActiveRecord: 0.0ms)
+
+
