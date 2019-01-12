@@ -10,8 +10,8 @@
 
 <script>
     var x = document.getElementById("error");
-    var lat = document.getElementById("latitude");
-    var long = document.getElementById("longitude");
+    var latt = document.getElementById("latitude");
+    var longg = document.getElementById("longitude");
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showMap);
@@ -23,25 +23,75 @@
     function showMap(position) {
         var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 13);
 
-        lat.innerHTML = position.coords.latitude;
-        long.innerHTML = position.coords.longitude;
+        latt.innerHTML = position.coords.latitude;
+        longg.innerHTML = position.coords.longitude;
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYml0c25ieXRlczE5IiwiYSI6ImNqcXNoaWlhYTB2ODMzeHByZ2NjdDd6YXQifQ.kNcH0XFQDT6uW1cYyZvK3g', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 200,
-            id: 'mapbox.streets',
-            accessToken: 'your.mapbox.access.token'
-        }).addTo(mymap);
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var feed = 0;
+        var color = 'red';
 
-        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+        data = {
+            'latitude': lat,
+            'longitude': long,
+            'feed': feed,
+            'color': color,
+        }
 
-        var circle = L.circle([position.coords.latitude, position.coords.longitude], {
-            color: '',
-            fillColor: '',
-            fillOpacity: 0.2,
-            radius: 500
-        }).addTo(mymap);
-        marker.bindPopup("<b>You are here!</b>").openPopup();
+        circles = {}
+
+        var points = [];
+
+            $.ajax({
+                url: URL+'locations', 
+                contentType: 'application/json',
+                data: data,
+                success: function(result){
+                    for(var i=0;i<result.length;++i) {
+                        data = {
+                            'latitude': result[i].latitude,
+                            'longitude': result[i].longitude,
+                            'feed': result[i].feed,
+                            'color': color,
+                        };
+                        points.push(data);
+                    }
+
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYml0c25ieXRlczE5IiwiYSI6ImNqcXNoaWlhYTB2ODMzeHByZ2NjdDd6YXQifQ.kNcH0XFQDT6uW1cYyZvK3g', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 200,
+                    id: 'mapbox.streets',
+                    accessToken: 'your.mapbox.access.token'
+                }).addTo(mymap);
+
+                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                marker.bindPopup("<b>You are here!</b>", {autoClose: false}).openPopup();
+
+                console.log(points);
+
+                for(var i=0;i<points.length;++i) {
+                    var greenIcon = L.icon({
+                        iconUrl: '/color-markers/img/marker-icon-2x-'+points[i].color+'.png',
+
+                        iconSize:     [20, 38], // size of the icon
+                        shadowSize:   [50, 64], // size of the shadow
+                        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                        shadowAnchor: [4, 62],  // the same for the shadow
+                        popupAnchor:  [-11, -85] // point from which the popup should open relative to the iconAnchor
+                    });
+                    var pointer = L.marker([points[i].latitude, points[i].longitude], {icon: greenIcon}).addTo(mymap);
+                    pointer.bindPopup(String(points[i].feed), {autoClose: false}).openPopup();
+
+
+                }
+
+                var circle = L.circle([position.coords.latitude, position.coords.longitude], {
+                    color: '',
+                    fillColor: '',
+                    fillOpacity: 0.2,
+                    radius: 600
+                }).addTo(mymap);
+            }});
     }
 
     getLocation()

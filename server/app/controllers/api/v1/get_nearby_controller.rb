@@ -1,11 +1,13 @@
 class Api::V1::GetNearbyController < ApplicationController
     before_action :get_current_location
-    
+
     def get_locations
-        puts(@current_location)
+        @feedback = Feedback.all
+        render json: @feedback
     end
 
     def get_feedbacks
+        
     end
 
     private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_202507) do
+ActiveRecord::Schema.define(version: 2019_01_12_071344) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer "feed"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2019_01_11_202507) do
     t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lighting"
+    t.integer "crowd"
+    t.integer "sanitation"
   end
 
   create_table "users", force: :cascade do |t|
