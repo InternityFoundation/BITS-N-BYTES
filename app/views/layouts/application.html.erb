@@ -1,15 +1,118 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BITSNBytes</title>
+    <title>Server</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+              <h3>BITS-N-BYTES</h3>
+          </div>
+
+          <ul class="list-unstyled components">
+              <p>Safety Companion</p>
+              <li class="active">
+                  <a href="/location/index" data-toggle="collapse" aria-expanded="false">Find Safety Near You</a>
+              </li>
+          </ul>
+
+          <ul class="list-unstyled CTAs">
+            <% if !user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Signup with email', new_user_registration_path, class: 'download' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Login with email', new_user_session_path, class: 'article' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '<button class="btn btn-google">Login with Google | <i class="fab fa-google"></i></button>'.html_safe, user_google_oauth2_omniauth_authorize_path %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'download' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to current_user.email, edit_user_registration_path %>
+              </li>
+            <% end %>
+          </ul>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content">
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container-fluid">
+
+                  <button type="button" id="sidebarCollapse" class="btn btn-info">
+                      <i class="fas fa-align-left"></i>
+                      <span>Toggle Sidebar</span>
+                  </button>
+                  <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <i class="fas fa-align-justify"></i>
+                  </button>
+
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                              <%= link_to "Home", pages_index_path, class: "nav-link" %>
+                            </li>
+                            <li class="nav-item">
+                              <%= link_to "About", pages_about_path, class: "nav-link" %>
+                            </li>
+                            <li class="nav-item">
+                              <%= link_to "Contact", pages_contact_path, class: "nav-link" %>
+                            </li>
+                            <% if user_signed_in? %>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#">SOS</a>
+                              </li>
+                            <% end %>
+                        </ul>
+                  </div>
+                  
+              </div>
+          </nav>
+
+          <%= yield %>
+
+      </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
   </body>
 </html>
