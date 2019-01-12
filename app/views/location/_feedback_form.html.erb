@@ -1,0 +1,31 @@
+<h1>Form</h1>
+<%= simple_form_for :feedback, url: feedback_path do |f| %>
+    <%= f.input :lighting, collection: 1..10 %>
+    <%= f.input :crowd, collection: 1..10 %>
+    <%= f.input :sanitation, collection: 1..10 %>
+    <%= f.input :content, label: 'Tell about your experince' %>
+    <%= f.input :latitude, disabled: true, id: 'latitude_field' %>
+    <%= f.input :longitude, disabled: true, id: 'longitude_field' %>
+
+    <%= f.submit 'Give Feedback', class: 'btn btn-info' %>
+<% end %>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(fillForm);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function fillForm(position) {
+        var lat_form = document.getElementById("feedback_latitude");
+        var long_form = document.getElementById("feedback_longitude");
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+
+        lat_form.value = lat;
+        long_form.value = long;
+    };
+    getLocation()
+</script>

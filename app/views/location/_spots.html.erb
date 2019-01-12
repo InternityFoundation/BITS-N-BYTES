@@ -1,0 +1,52 @@
+<h1>Spots</h1>
+<% i = 0 %>
+<% if spot.blank? %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Looks like no reviews around you.</h5>
+            <p class="card-text">Be the first one to give feedback in the feedback section and help others.</p>
+        </div>
+    </div>
+<% end %>
+<% spot.each do |s| %>
+    <% i += 1 %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= i %>) <%= s.feed %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= s.latitude %>, <%= s.longitude %></h6>
+            <p class="card-text"><%= s.content %></p>
+        </div>
+    </div>
+<% end %>
+
+<script>
+    var URL = "http://localhost:3000/api/v1/";
+    var data = {};
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(giveLocation);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function giveLocation(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+
+        data = {
+            'latitude': lat,
+            'longitude': long,
+        }
+
+        $.ajax({
+            url: URL+'locations', 
+            contentType: 'application/json',
+            data: data,
+            success: function(result){
+                console.log(result)
+        }});
+    };
+    getLocation()
+    
+</script>
