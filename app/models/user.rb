@@ -17,4 +17,6 @@ class User < ApplicationRecord
     end
     user
   end
+
+  has_many :feedbacks
 end
