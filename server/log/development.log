@@ -4496,3 +4496,17 @@ Processing by LocationController#index as HTML
 Completed 200 OK in 125ms (Views: 118.2ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/location/index" for 127.0.0.1 at 2019-01-12 10:06:06 +0530
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/shlokwalia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by LocationController#index as HTML
+  Rendering location/index.html.erb within layouts/application
+  [1m[36mFeedback Load (1.3ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks"[0m
+  ↳ app/views/location/_spots.html.erb:3
+  Rendered location/_spots.html.erb (4.9ms)
+  Rendered location/_map.html.erb (0.5ms)
+  Rendered location/_feedback.html.erb (5.4ms)
+  Rendered location/index.html.erb within layouts/application (26.1ms)
+Completed 200 OK in 809ms (Views: 777.8ms | ActiveRecord: 2.3ms)
+
+
