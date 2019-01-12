@@ -1,4 +1,19 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
 
-<%= link_to '<button class="btn btn-lrg btn-outline-success">Find safety arround you</button>'.html_safe, location_index_path %>
+<!--CAROUSEL-->
+
+<%= render "carousel" %>
+
+
+
+<div class="container marketing">
+
+  <!-- THREE HEADINGS -->
+  <%= render "pages/3headings" %>
+
+  <hr />
+
+  <!--  FEATURES-->
+
+  <%= render "pages/features" %>
+
+</div>
