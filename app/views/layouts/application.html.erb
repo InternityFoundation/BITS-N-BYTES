@@ -86,7 +86,7 @@
                             </li>
                             <% if user_signed_in? %>
                               <li class="nav-item">
-                                <a class="nav-link" href="#">SOS</a>
+                                <%= link_to "SOS", pages_sos_path, class: "nav-link" %>
                               </li>
                             <% end %>
                         </ul>

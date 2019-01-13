@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'pages/about' => 'pages/about'
   get 'pages/contact' => 'pages/contact'
+  get 'pages/sos' => 'pages/sos'
   
   post 'feedback', to: 'location#create_feedback'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
