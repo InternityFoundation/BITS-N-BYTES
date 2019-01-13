@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95200740-5ee6-47ac-a2ed-c1dd132c2c1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/pages/sos.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/sos.html.erb" afterDir="false" />
-    </list>
+    <list default="true" id="95200740-5ee6-47ac-a2ed-c1dd132c2c1c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,16 +268,15 @@
       <updated>1547320490591</updated>
       <workItem from="1547320491774" duration="17000" />
       <workItem from="1547320521800" duration="2098000" />
-      <workItem from="1547347467948" duration="5251000" />
+      <workItem from="1547347467948" duration="5752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7366000" />
+    <option name="totallyTimeSpent" value="7867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
