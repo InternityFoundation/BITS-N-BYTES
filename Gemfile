@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'devise', '~> 4.5'
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 gem 'omniauth-google-oauth2', '~> 0.6.0'
 
 group :development, :test do
